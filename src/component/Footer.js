@@ -1,46 +1,108 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { FaEnvelope, FaMicrosoft } from 'react-icons/fa';
+import { FaEnvelope, FaMicrosoft, FaHeart, FaGithub, FaLinkedin, FaTwitter } from 'react-icons/fa';
 
-const Footer = () => (
-  <footer className="bg-gradient-to-r from-blue-500 to-purple-600 text-white dark:from-gray-800 dark:to-gray-900 py-6">
-    <div className="container mx-auto text-center px-4">
-      <motion.p
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
-        className="text-sm md:text-base">
-        © {new Date().getFullYear()} Youssef Mohamed. All rights reserved.
-      </motion.p>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ delay: 1, duration: 0.5 }}
-        className="flex justify-center mt-4 space-x-4">
-        <a href="#" className="text-white dark:text-gray-300 hover:text-blue-200 dark:hover:text-blue-400 mx-2 transition duration-300">
-          Privacy Policy
-        </a>
-        <span className="text-white dark:text-gray-300">•</span>
-        <a href="#" className="text-white dark:text-gray-300 hover:text-blue-200 dark:hover:text-blue-400 mx-2 transition duration-300">
-          Terms of Service
-        </a>
-      </motion.div>
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1.5, duration: 0.8 }}
-        className="flex justify-center mt-4 space-x-6">
-        <a href="youssefmohamedahmed2004@gmail.com" className="text-white hover:text-blue-200 transition duration-300">
-          <FaEnvelope className="inline-block mr-2" />
-          Gmail
-        </a>
-        <a href="2200388@student.eelu.edu.eg" className="text-white hover:text-blue-200 transition duration-300">
-          <FaMicrosoft className="inline-block mr-2" />
-          Outlook
-        </a>
-      </motion.div>
-    </div>
-  </footer>
-);
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        type: 'spring',
+        stiffness: 100,
+      },
+    },
+  };
+
+  const socialLinks = [
+    { icon: FaGithub, href: "https://github.com/youssef-mohamed07" },
+    { icon: FaLinkedin, href: "https://www.linkedin.com/in/youssef-mohamed-96158330a" },
+    { icon: FaTwitter, href: "https://twitter.com/Youssef37025476" },
+  ];
+
+  return (
+    <footer className="bg-gradient-to-r from-purple-800 via-violet-900 to-purple-800 text-white py-12">
+      <div className="container mx-auto px-4">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="grid grid-cols-1 md:grid-cols-3 gap-8"
+        >
+          <motion.div variants={itemVariants} className="text-center md:text-left">
+            <h3 className="text-2xl font-bold mb-4">Youssef Mohamed</h3>
+            <p className="mb-2">Software Engineer | React Developer</p>
+            <p>Passionate about creating amazing web experiences</p>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="text-center">
+            <h3 className="text-2xl font-bold mb-4">Quick Links</h3>
+            <ul className="space-y-2">
+              <li><a  id='Profile.js' href="#" className="hover:text-purple-300 transition-colors duration-300">Profile</a></li>
+              <li><a id='Experience.js' href="#"d className="hover:text-purple-300 transition-colors duration-300">Experience</a></li>
+              <li><a id='Education.js' href="#" className="hover:text-purple-300 transition-colors duration-300">Education</a></li>
+              <li><a id='Skills.js' href="#" className="hover:text-purple-300 transition-colors duration-300">Skills</a></li>
+            </ul>
+          </motion.div>
+
+          <motion.div variants={itemVariants} className="text-center md:text-right">
+            <h3 className="text-2xl font-bold mb-4">Get in Touch</h3>
+            <div className="flex justify-center md:justify-end space-x-4 mb-4">
+              {socialLinks.map((link, index) => (
+                <motion.a
+                  key={index}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.2, rotate: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="text-white hover:text-purple-300 transition-colors duration-300"
+                >
+                  <link.icon size="1.5em" />
+                </motion.a>
+              ))}
+            </div>
+            <div className="space-y-2">
+              <a href="mailto:youssefmohamedahmed2004@gmail.com" className="flex items-center justify-center md:justify-end hover:text-purple-300 transition-colors duration-300">
+                <FaEnvelope className="mr-2" /> youssefmohamedahmed2004@gmail.com
+              </a>
+              <a href="mailto:2200388@student.eelu.edu.eg" className="flex items-center justify-center md:justify-end hover:text-purple-300 transition-colors duration-300">
+                <FaMicrosoft className="mr-2" /> 2200388@student.eelu.edu.eg
+              </a>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        <motion.div 
+          variants={itemVariants} 
+          className="mt-8 pt-8 border-t border-purple-700 text-center"
+        >
+          <p className="text-sm">
+            © {currentYear} Youssef Mohamed. All rights reserved.
+          </p>
+          <motion.p 
+            className="mt-2 text-sm flex items-center justify-center"
+            whileHover={{ scale: 1.05 }}
+          >
+            Made with <FaHeart className="mx-1 text-red-500 animate-pulse" /> using React and Tailwind CSS
+          </motion.p>
+        </motion.div>
+      </div>
+    </footer>
+  );
+};
 
 export default Footer;
