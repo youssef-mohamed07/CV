@@ -81,7 +81,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
                 animate={{ opacity: [0, 1] }}
                 transition={{ delay: 2, duration: 1 }}
               >
-                {greeting}, Welcome to My Portfolio!
+                {greeting}, Welcome to My CV!
               </motion.p>
             </motion.div>
           )}

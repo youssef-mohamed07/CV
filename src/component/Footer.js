@@ -51,16 +51,16 @@ const Footer = () => {
           <motion.div variants={itemVariants} className="text-center">
             <h3 className="text-2xl font-bold mb-4">Quick Links</h3>
             <ul className="space-y-2">
-              <li><a  id='Profile.js' href="#" className="hover:text-purple-300 transition-colors duration-300">Profile</a></li>
-              <li><a id='Experience.js' href="#"d className="hover:text-purple-300 transition-colors duration-300">Experience</a></li>
-              <li><a id='Education.js' href="#" className="hover:text-purple-300 transition-colors duration-300">Education</a></li>
-              <li><a id='Skills.js' href="#" className="hover:text-purple-300 transition-colors duration-300">Skills</a></li>
+              <li><a href="#Profile" className="hover:text-purple-300 transition-colors duration-300">Profile</a></li>
+              <li><a href="#Experience" className="hover:text-purple-300 transition-colors duration-300">Experience</a></li>
+              <li><a href="#Education" className="hover:text-purple-300 transition-colors duration-300">Education</a></li>
+              <li><a href="#Skills" className="hover:text-purple-300 transition-colors duration-300">Skills</a></li>
             </ul>
           </motion.div>
 
           <motion.div variants={itemVariants} className="text-center md:text-right">
             <h3 className="text-2xl font-bold mb-4">Get in Touch</h3>
-            <div className="flex justify-center md:justify-end space-x-4 mb-4">
+            <div className="flex justify-center md:justify-end flex-wrap gap-4 mb-4">
               {socialLinks.map((link, index) => (
                 <motion.a
                   key={index}

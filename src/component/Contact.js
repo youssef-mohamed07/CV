@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaPaperPlane, FaUser, FaEnvelope, FaCommentAlt, FaExclamationTriangle } from 'react-icons/fa';
+import { FaPaperPlane, FaUser, FaEnvelope, FaCommentAlt } from 'react-icons/fa';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
@@ -70,7 +70,7 @@ const Contact = () => {
   };
 
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
+    <section className="py-12 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gray-100 dark:bg-gray-900 transition-colors duration-300">
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -81,30 +81,30 @@ const Contact = () => {
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-5xl font-extrabold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:bg-gradient-to-r dark:from-blue-300 dark:to-purple-400"
+          className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6 sm:mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600 dark:bg-gradient-to-r dark:from-blue-300 dark:to-purple-400"
         >
           Get in Touch
         </motion.h2>
         <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-2xl overflow-hidden transition-colors duration-300">
           <div className="flex flex-col md:flex-row">
-            <div className="md:w-1/2 p-8 bg-gradient-to-br from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700 text-white flex flex-col justify-center">
-              <h3 className="text-3xl font-bold mb-4">Let's Chat!</h3>
-              <p className="mb-6">I'm always excited to connect, collaborate, and discuss new opportunities.</p>
-              <ul className="space-y-4">
-                <li className="flex items-center">
-                  <FaEnvelope className="mr-3" /> youssefmohamedahmed2004@gmail.com
+            <div className="md:w-1/2 p-6 sm:p-8 bg-gradient-to-br from-blue-500 to-purple-600 dark:from-blue-600 dark:to-purple-700 text-white flex flex-col justify-center">
+              <h3 className="text-2xl sm:text-3xl font-bold mb-4">Let's Chat!</h3>
+              <p className="mb-6 text-sm sm:text-base">I'm always excited to connect, collaborate, and discuss new opportunities.</p>
+              <ul className="space-y-4 text-sm sm:text-base">
+                <li className="flex items-center break-all">
+                  <FaEnvelope className="mr-3 flex-shrink-0" /> youssefmohamedahmed2004@gmail.com
                 </li>
-                <li className="flex items-center">
-                  <FaEnvelope className="mr-3" /> 2200388@student.eelu.edu.eg
+                <li className="flex items-center break-all">
+                  <FaEnvelope className="mr-3 flex-shrink-0" /> 2200388@student.eelu.edu.eg
                 </li>
               </ul>
             </div>
-            <div className="md:w-1/2 p-8">
+            <div className="md:w-1/2 p-6 sm:p-8">
               <AnimatePresence>
                 {!isSubmitted ? (
                   <motion.form
                     key="form"
-                    className="space-y-6"
+                    className="space-y-4 sm:space-y-6"
                     onSubmit={handleSubmit}
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
@@ -176,9 +176,9 @@ const Contact = () => {
                     transition={{ duration: 0.5 }}
                     className="text-center py-12"
                   >
-                    <FaPaperPlane className="text-6xl text-green-500 dark:text-green-400 mx-auto mb-4" />
-                    <h3 className="text-2xl font-bold mb-2 text-gray-800 dark:text-gray-200">Message Sent!</h3>
-                    <p className="text-gray-600 dark:text-gray-400">Thank you for reaching out. I'll get back to you soon!</p>
+                    <FaPaperPlane className="text-5xl sm:text-6xl text-green-500 dark:text-green-400 mx-auto mb-4" />
+                    <h3 className="text-xl sm:text-2xl font-bold mb-2 text-gray-800 dark:text-gray-200">Message Sent!</h3>
+                    <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">Thank you for reaching out. I'll get back to you soon!</p>
                   </motion.div>
                 )}
               </AnimatePresence>

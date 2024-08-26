@@ -51,12 +51,13 @@ const toolsAndSoftwareSkills = [
   { icon: <BsTools size="2em" />, name: "Edraw Max", classes: "bg-purple-500 dark:bg-purple-700" },
 ];
 
+
 const ToggleSwitch = ({ skillType, onToggle }) => (
-  <div className="flex flex-wrap items-center justify-center mb-8">
+  <div className="flex flex-wrap items-center justify-center mb-4 sm:mb-8">
     {['language', 'personal', 'ide', 'tools'].map((type) => (
       <motion.button 
         key={type}
-        className={`px-6 py-3 m-2 rounded-full text-lg font-semibold transition-all duration-300 ${
+        className={`px-3 sm:px-6 py-2 sm:py-3 m-1 sm:m-2 rounded-full text-sm sm:text-lg font-semibold transition-all duration-300 ${
           skillType === type 
             ? 'bg-gradient-to-r from-blue-500 to-purple-600 text-white shadow-lg' 
             : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200 hover:bg-gray-300 dark:hover:bg-gray-600'
@@ -65,7 +66,7 @@ const ToggleSwitch = ({ skillType, onToggle }) => (
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
       >
-        {type.charAt(0).toUpperCase() + type.slice(1)} Skills
+        {type.charAt(0).toUpperCase() + type.slice(1)}
       </motion.button>
     ))}
   </div>
@@ -94,9 +95,9 @@ const Skills = () => {
     toolsAndSoftwareSkills;
 
   return (
-    <section className="my-16 px-4">
+    <section className="my-8 sm:my-16 px-2 sm:px-4">
       <motion.h2 
-        className="text-4xl font-bold mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600 dark:bg-gradient-to-r dark:from-blue-300 dark:to-purple-400"
+        className="text-3xl sm:text-4xl font-bold mb-6 sm:mb-8 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600 dark:bg-gradient-to-r dark:from-blue-300 dark:to-purple-400"
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
@@ -107,7 +108,7 @@ const Skills = () => {
       <AnimatePresence>
         {isVisible && (
           <motion.div 
-            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-6"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -125,19 +126,19 @@ const Skills = () => {
 
 const SkillItem = ({ icon, name, classes }) => (
   <motion.div 
-    className={`flex flex-col items-center justify-center p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ${classes} text-white`}
+    className={`flex flex-col items-center justify-center p-3 sm:p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 ${classes} text-white`}
     whileHover={{ scale: 1.05, rotate: [0, -1, 1, -1, 0] }}
     whileTap={{ scale: 0.95 }}
   >
     <motion.div 
-      className="text-4xl mb-3"
+      className="text-2xl sm:text-4xl mb-2 sm:mb-3"
       initial={{ rotateY: 0 }}
       whileHover={{ rotateY: 180 }}
       transition={{ duration: 0.4 }}
     >
-      {icon && icon}
+      {icon && React.cloneElement(icon, { size: "1.5em" })}
     </motion.div>
-    <span className="text-lg font-semibold text-center">{name}</span>
+    <span className="text-xs sm:text-sm md:text-base font-semibold text-center">{name}</span>
   </motion.div>
 );
 
