@@ -35,9 +35,9 @@ const Header = ({ toggleDarkMode, darkMode }) => {
   };
 
   return (
-    <header className={`bg-gradient-to-r ${darkMode ? 'from-gray-900 via-purple-900 to-black' : 'from-blue-600 via-pink-600 to-purple-700'} text-white py-8 shadow-2xl relative overflow-hidden`}>
+    <header className={`bg-gradient-to-r ${darkMode ? 'from-gray-900 via-purple-900 to-black' : 'from-blue-600 via-pink-600 to-purple-700'} text-white py-6 md:py-8 shadow-2xl relative overflow-hidden`}>
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4 relative z-10">
+      <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4 md:px-8 relative z-10">
         <AnimatePresence>
           {isVisible && (
             <motion.div
@@ -45,10 +45,10 @@ const Header = ({ toggleDarkMode, darkMode }) => {
               animate={{ y: 0, opacity: 1 }}
               exit={{ y: -250, opacity: 0 }}
               transition={{ type: 'spring', stiffness: 120, damping: 10 }}
-              className="text-center md:text-left"
+              className="text-center md:text-left mb-6 md:mb-0"
             >
               <motion.h1 
-                className="text-4xl md:text-7xl font-extrabold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 dark:bg-gradient-to-r dark:from-blue-300 dark:to-purple-400"
+                className="text-3xl md:text-6xl font-extrabold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 dark:bg-gradient-to-r dark:from-blue-300 dark:to-purple-400"
                 animate={{
                   backgroundPosition: ['0%', '100%', '0%'],
                 }}
@@ -65,7 +65,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
                 Youssef Mohamed
               </motion.h1>
               <motion.p 
-                className="text-xl md:text-3xl font-light mt-2"
+                className="text-lg md:text-2xl font-light mt-2"
                 animate={{
                   textShadow: ['0 0 0px #fff', '0 0 20px #fff', '0 0 0px #fff'],
                 }}
@@ -77,7 +77,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
                 {typedText}
               </motion.p>
               <motion.p 
-                className="text-xl md:text-2xl mt-4 font-semibold"
+                className="text-lg md:text-xl mt-4 font-semibold"
                 animate={{ opacity: [0, 1] }}
                 transition={{ delay: 2, duration: 1 }}
               >
@@ -87,7 +87,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
           )}
         </AnimatePresence>
         <motion.div
-          className="flex space-x-8 mt-6 md:mt-0"
+          className="flex space-x-4 md:space-x-8 mt-6 md:mt-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, staggerChildren: 0.2 }}
@@ -111,7 +111,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
               onMouseEnter={() => setHoverIcon(index)}
               onMouseLeave={() => setHoverIcon(null)}
             >
-              <Icon size="2.5em" />
+              <Icon size="2em" />
               {hoverIcon === index && (
                 <motion.div
                   className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 rounded text-sm"
@@ -141,11 +141,11 @@ const Header = ({ toggleDarkMode, darkMode }) => {
             <AnimatePresence mode="wait">
               {darkMode ? (
                 <motion.div key="sun" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.3 }}>
-                  <FaSun size="2.5em" />
+                  <FaSun size="2em" />
                 </motion.div>
               ) : (
                 <motion.div key="moon" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.3 }}>
-                  <FaMoon size="2.5em" />
+                  <FaMoon size="2em" />
                 </motion.div>
               )}
             </AnimatePresence>
