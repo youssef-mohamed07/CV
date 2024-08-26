@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { FaLinkedin, FaGithub, FaTwitter, FaSun, FaMoon, FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaTwitter, FaSun, FaMoon, FaFacebook, FaWhatsapp } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Header = ({ toggleDarkMode, darkMode }) => {
@@ -97,7 +97,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
             { icon: FaGithub, href: "https://github.com/youssef-mohamed07", color: "#333" },
             { icon: FaTwitter, href: "https://twitter.com/Youssef37025476", color: "#1DA1F2" },
             { icon: FaFacebook, href: "https://www.facebook.com/profile.php?id=100015806417176&sk=about", color: "#1877F2" },
-            { icon: FaInstagram, href: "https://www.instagram.com/youssef_mohamed7100?igsh=YzljYTk1ODg3Zg==", color: "#E1306C" },
+            { icon: FaWhatsapp, href: "https://wa.me/201120592366", color: "#25D366" },
           ].map(({ icon: Icon, href, color }, index) => (
             <motion.a
               key={index}
