@@ -15,12 +15,10 @@ const languageSkills = [
   { icon: <FaHtml5 size="2em" />, name: "HTML", classes: "bg-orange-500 dark:bg-orange-700" },
   { icon: <FaCss3Alt size="2em" />, name: "CSS", classes: "bg-blue-500 dark:bg-blue-700" },
   { icon: <FaJs size="2em" />, name: "JavaScript", classes: "bg-yellow-500 dark:bg-yellow-700" },
-  { icon: <SiTypescript size="2em" />, name: "TypeScript", classes: "bg-blue-600 dark:bg-blue-800" },
   { icon: <FaNodeJs size="2em" />, name: "Node.js", classes: "bg-green-500 dark:bg-green-700" },
   { icon: <FaReact size="2em" />, name: "React", classes: "bg-blue-400 dark:bg-blue-600" },
   { icon: <FaMobile size="2em" />, name: "React Native", classes: "bg-indigo-500 dark:bg-indigo-700" },
   { icon: <SiRedux size="2em" />, name: "Redux", classes: "bg-purple-500 dark:bg-purple-700" },
-  { icon: <SiReduxsaga size="2em" />, name: "Redux-Saga", classes: "bg-purple-600 dark:bg-purple-800" },
   { icon: <FaCss3Alt size="2em" />, name: "Tailwind CSS", classes: "bg-blue-600 dark:bg-blue-800" },
   { icon: <FaCss3Alt size="2em" />, name: "Bootstrap CSS", classes: "bg-purple-600 dark:bg-purple-800" },
 ];
@@ -34,19 +32,13 @@ const personalSkills = [
   { icon: <FaLanguage size="2em" />, name: "English", classes: "bg-yellow-500 dark:bg-yellow-700" },
   { icon: <GiThink size="2em" />, name: "Critical Thinking", classes: "bg-blue-600 dark:bg-blue-800" },
   { icon: <RiLightbulbFlashFill size="2em" />, name: "Innovation", classes: "bg-yellow-500 dark:bg-yellow-700" },
-  { icon: <SiLinux size="2em" />, name: "Linux", classes: "bg-gray-600 dark:bg-gray-400" },
-  { icon: <SiPostman size="2em" />, name: "Postman", classes: "bg-orange-500 dark:bg-orange-700" },
-  { icon: <AiOutlineCloudServer size="2em" />, name: "Cloud Computing", classes: "bg-blue-400 dark:bg-blue-600" },
 ];
 
 const ideSkills = [
   { icon: <SiVisualstudiocode size="2em" />, name: "VS Code", classes: "bg-blue-500 dark:bg-blue-700" },
   { icon: <SiIntellijidea size="2em" />, name: "IntelliJ IDEA", classes: "bg-red-500 dark:bg-red-700" },
   { icon: <SiPycharm size="2em" />, name: "PyCharm", classes: "bg-green-500 dark:bg-green-700" },
-  { icon: <FaAndroid size="2em" />, name: "Android Studio", classes: "bg-green-600 dark:bg-green-800" },
   { icon: <SiEclipseide size="2em" />, name: "Eclipse", classes: "bg-purple-500 dark:bg-purple-700" },
-  { icon: <SiXcode size="2em" />, name: "Xcode", classes: "bg-blue-400 dark:bg-blue-600" },
-  { icon: <SiSublimetext size="2em" />, name: "Sublime Text", classes: "bg-orange-500 dark:bg-orange-700" },
 ];
 
 const toolsAndSoftwareSkills = [

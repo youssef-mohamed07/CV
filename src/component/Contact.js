@@ -1,18 +1,48 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaPaperPlane, FaUser, FaEnvelope, FaCommentAlt } from 'react-icons/fa';
+import { FaPaperPlane, FaUser, FaEnvelope, FaCommentAlt, FaExclamationTriangle } from 'react-icons/fa';
 
 const Contact = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [errors, setErrors] = useState({ name: '', email: '', message: '' });
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const validateForm = () => {
+    const { name, email, message } = formData;
+    let formErrors = { name: '', email: '', message: '' };
+    let isValid = true;
+
+    if (!name.trim()) {
+      formErrors.name = 'Name is required';
+      isValid = false;
+    }
+
+    if (!email.trim()) {
+      formErrors.email = 'Email is required';
+      isValid = false;
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      formErrors.email = 'Email address is invalid';
+      isValid = false;
+    }
+
+    if (!message.trim()) {
+      formErrors.message = 'Message is required';
+      isValid = false;
+    }
+
+    setErrors(formErrors);
+    return isValid;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
+
     setIsSubmitting(true);
     try {
       const response = await fetch('http://localhost:3001/api/contact', {
@@ -23,12 +53,13 @@ const Contact = () => {
       if (response.ok) {
         setIsSubmitted(true);
         setFormData({ name: '', email: '', message: '' });
+        setErrors({ name: '', email: '', message: '' });
       } else {
-        alert('Failed to send message. Please try again.');
+        setErrors({ ...errors, message: 'Failed to send message. Please try again.' });
       }
     } catch (error) {
       console.error('Error:', error);
-      alert('An error occurred. Please try again.');
+      setErrors({ ...errors, message: 'An error occurred. Please try again.' });
     }
     setIsSubmitting(false);
   };
@@ -86,10 +117,11 @@ const Contact = () => {
                         name="name"
                         value={formData.name}
                         onChange={handleChange}
-                        className="w-full pl-10 pr-3 py-2 border-b-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 bg-transparent outline-none text-gray-800 dark:text-gray-200 transition-colors duration-300"
+                        className={`w-full pl-10 pr-3 py-2 border-b-2 transition-colors duration-300 ${errors.name ? 'border-red-500 dark:border-red-600' : 'border-gray-300 dark:border-gray-600'} focus:border-blue-500 dark:focus:border-blue-400 bg-transparent outline-none text-gray-800 dark:text-gray-200`}
                         placeholder="Your Name"
                         required
                       />
+                      {errors.name && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.name}</p>}
                     </motion.div>
                     <motion.div variants={inputVariants} whileFocus="focus" whileTap="focus" whileHover="focus" className="relative">
                       <FaEnvelope className="absolute top-3 left-3 text-gray-400 dark:text-gray-500" />
@@ -98,10 +130,11 @@ const Contact = () => {
                         name="email"
                         value={formData.email}
                         onChange={handleChange}
-                        className="w-full pl-10 pr-3 py-2 border-b-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 bg-transparent outline-none text-gray-800 dark:text-gray-200 transition-colors duration-300"
+                        className={`w-full pl-10 pr-3 py-2 border-b-2 transition-colors duration-300 ${errors.email ? 'border-red-500 dark:border-red-600' : 'border-gray-300 dark:border-gray-600'} focus:border-blue-500 dark:focus:border-blue-400 bg-transparent outline-none text-gray-800 dark:text-gray-200`}
                         placeholder="Your Email"
                         required
                       />
+                      {errors.email && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.email}</p>}
                     </motion.div>
                     <motion.div variants={inputVariants} whileFocus="focus" whileTap="focus" whileHover="focus" className="relative">
                       <FaCommentAlt className="absolute top-3 left-3 text-gray-400 dark:text-gray-500" />
@@ -110,10 +143,11 @@ const Contact = () => {
                         value={formData.message}
                         onChange={handleChange}
                         rows="4"
-                        className="w-full pl-10 pr-3 py-2 border-b-2 border-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-400 bg-transparent outline-none resize-none text-gray-800 dark:text-gray-200 transition-colors duration-300"
+                        className={`w-full pl-10 pr-3 py-2 border-b-2 transition-colors duration-300 ${errors.message ? 'border-red-500 dark:border-red-600' : 'border-gray-300 dark:border-gray-600'} focus:border-blue-500 dark:focus:border-blue-400 bg-transparent outline-none resize-none text-gray-800 dark:text-gray-200`}
                         placeholder="Your Message"
                         required
                       ></textarea>
+                      {errors.message && <p className="text-red-500 dark:text-red-400 text-sm mt-1">{errors.message}</p>}
                     </motion.div>
                     <motion.button
                       type="submit"
@@ -122,7 +156,12 @@ const Contact = () => {
                       whileTap={{ scale: 0.95 }}
                       disabled={isSubmitting}
                     >
-                      {isSubmitting ? 'Sending...' : (
+                      {isSubmitting ? (
+                        <div className="flex items-center">
+                          <div className="w-5 h-5 border-4 border-t-transparent border-blue-500 border-solid rounded-full animate-spin"></div>
+                          <span className="ml-2">Sending...</span>
+                        </div>
+                      ) : (
                         <>
                           Send Message <FaPaperPlane className="ml-2" />
                         </>

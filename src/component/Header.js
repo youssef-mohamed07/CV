@@ -5,7 +5,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Header = ({ toggleDarkMode, darkMode }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [typedText, setTypedText] = useState('');
-  const fullText = 'Software Engineer | React Developer ';
+  const [greeting, setGreeting] = useState('');
+  const fullText = 'Software Engineer | React Developer | Creative Coder';
   const [hoverIcon, setHoverIcon] = useState(null);
 
   useEffect(() => {
@@ -17,15 +18,24 @@ const Header = ({ toggleDarkMode, darkMode }) => {
       }
     };
     typeText();
+
+    const hours = new Date().getHours();
+    if (hours < 12) {
+      setGreeting('Good Morning');
+    } else if (hours < 18) {
+      setGreeting('Good Afternoon');
+    } else {
+      setGreeting('Good Evening');
+    }
   }, []);
 
   const iconVariants = {
-    hover: { scale: 1.2, rotate: 5 },
+    hover: { scale: 1.3, rotate: 10 },
     tap: { scale: 0.9 },
   };
 
   return (
-    <header className={`bg-gradient-to-r ${darkMode ? 'from-gray-900 to-black' : 'from-blue-600 to-purple-700'} text-white py-6 shadow-2xl relative overflow-hidden`}>
+    <header className={`bg-gradient-to-r ${darkMode ? 'from-gray-900 via-purple-900 to-black' : 'from-blue-600 via-pink-600 to-purple-700'} text-white py-8 shadow-2xl relative overflow-hidden`}>
       <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center px-4 relative z-10">
         <AnimatePresence>
@@ -38,7 +48,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
               className="text-center md:text-left"
             >
               <motion.h1 
-                className="text-4xl md:text-6xl font-bold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 dark:bg-gradient-to-r dark:from-blue-300 dark:to-purple-400"
+                className="text-4xl md:text-7xl font-extrabold mb-2 bg-clip-text text-transparent bg-gradient-to-r from-yellow-400 via-pink-500 to-purple-500 dark:bg-gradient-to-r dark:from-blue-300 dark:to-purple-400"
                 animate={{
                   backgroundPosition: ['0%', '100%', '0%'],
                 }}
@@ -49,12 +59,13 @@ const Header = ({ toggleDarkMode, darkMode }) => {
                 }}
                 style={{
                   backgroundSize: '200% auto',
+                  textShadow: darkMode ? '0 0 15px rgba(255, 255, 255, 0.6)' : 'none',
                 }}
               >
                 Youssef Mohamed
               </motion.h1>
               <motion.p 
-                className="text-xl md:text-2xl font-light"
+                className="text-xl md:text-3xl font-light mt-2"
                 animate={{
                   textShadow: ['0 0 0px #fff', '0 0 20px #fff', '0 0 0px #fff'],
                 }}
@@ -65,11 +76,18 @@ const Header = ({ toggleDarkMode, darkMode }) => {
               >
                 {typedText}
               </motion.p>
+              <motion.p 
+                className="text-xl md:text-2xl mt-4 font-semibold"
+                animate={{ opacity: [0, 1] }}
+                transition={{ delay: 2, duration: 1 }}
+              >
+                {greeting}, Welcome to My Portfolio!
+              </motion.p>
             </motion.div>
           )}
         </AnimatePresence>
         <motion.div
-          className="flex space-x-6 mt-6 md:mt-0"
+          className="flex space-x-8 mt-6 md:mt-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 1, staggerChildren: 0.2 }}
@@ -93,7 +111,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
               onMouseEnter={() => setHoverIcon(index)}
               onMouseLeave={() => setHoverIcon(null)}
             >
-              <Icon size="2em" />
+              <Icon size="2.5em" />
               {hoverIcon === index && (
                 <motion.div
                   className="absolute -top-8 left-1/2 transform -translate-x-1/2 bg-white text-black px-2 py-1 rounded text-sm"
@@ -108,7 +126,7 @@ const Header = ({ toggleDarkMode, darkMode }) => {
                 className="absolute inset-0 rounded-full"
                 style={{ backgroundColor: color }}
                 initial={{ scale: 0, opacity: 0 }}
-                animate={hoverIcon === index ? { scale: 1.5, opacity: 0.2 } : { scale: 0, opacity: 0 }}
+                animate={hoverIcon === index ? { scale: 1.7, opacity: 0.25 } : { scale: 0, opacity: 0 }}
                 transition={{ duration: 0.3 }}
               />
             </motion.a>
@@ -123,11 +141,11 @@ const Header = ({ toggleDarkMode, darkMode }) => {
             <AnimatePresence mode="wait">
               {darkMode ? (
                 <motion.div key="sun" initial={{ rotate: -90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 90, opacity: 0 }} transition={{ duration: 0.3 }}>
-                  <FaSun size="2em" />
+                  <FaSun size="2.5em" />
                 </motion.div>
               ) : (
                 <motion.div key="moon" initial={{ rotate: 90, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -90, opacity: 0 }} transition={{ duration: 0.3 }}>
-                  <FaMoon size="2em" />
+                  <FaMoon size="2.5em" />
                 </motion.div>
               )}
             </AnimatePresence>

@@ -1,16 +1,8 @@
 import React from 'react';
-import { motion } from 'framer-motion';
-import { FaGraduationCap, FaUniversity, FaCalendarAlt, FaStar } from 'react-icons/fa';
+import { FaGraduationCap, FaUniversity, FaCalendarAlt, FaStar, FaBook } from 'react-icons/fa';
 
-const EducationItem = ({ title, institution, period, description, grade, gpa }) => (
-  <motion.div
-    className="p-6 bg-gradient-to-br from-blue-500 to-purple-600 dark:from-gray-800 dark:to-gray-900 rounded-xl shadow-lg hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300"
-    whileHover={{ scale: 1.05 }}
-    whileTap={{ scale: 0.95 }}
-    initial={{ opacity: 0, y: 50 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5 }}
-  >
+const EducationItem = ({ title, institution, period, description, grade, gpa, courses }) => (
+  <div className="p-6 bg-gradient-to-br from-blue-500 to-purple-600 dark:from-gray-800 dark:to-gray-900 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300">
     <div className="flex items-center mb-4">
       <FaGraduationCap className="text-3xl text-yellow-300 mr-4" />
       <h3 className="text-2xl md:text-3xl font-bold text-white">{title}</h3>
@@ -34,7 +26,20 @@ const EducationItem = ({ title, institution, period, description, grade, gpa }) 
         <p>GPA: {gpa}</p>
       </div>
     </div>
-  </motion.div>
+    {courses && (
+      <div className="mt-6 text-white">
+        <h4 className="text-lg font-bold mb-2">Relevant Courses:</h4>
+        <ul className="list-disc pl-5">
+          {courses.map((course, index) => (
+            <li key={index} className="mb-1 flex items-center">
+              <FaBook className="mr-2" />
+              {course}
+            </li>
+          ))}
+        </ul>
+      </div>
+    )}
+  </div>
 );
 
 const Education = () => {
@@ -45,40 +50,22 @@ const Education = () => {
       period: "2022-2026",
       description: "Pursuing a degree in Information Technology, focusing on cutting-edge technologies and innovative solutions in the digital realm.",
       grade: "3",
-      gpa: "3.65"
+      gpa: "3.65",
     },
     // You can add more education items here
   ];
 
   return (
     <section className="my-16 px-4">
-      <motion.h2 
-        className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600 dark:bg-gradient-to-r dark:from-blue-300 dark:to-purple-400"
-        initial={{ opacity: 0, y: -50 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
+      <h2 className="text-4xl font-bold mb-12 text-center bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-purple-600 dark:bg-gradient-to-r dark:from-blue-300 dark:to-purple-400">
         Educational Journey
-      </motion.h2>
+      </h2>
       <div className="max-w-4xl mx-auto">
-        <motion.div 
-          className="grid grid-cols-1 gap-10"
-          variants={{
-            hidden: { opacity: 0 },
-            show: {
-              opacity: 1,
-              transition: {
-                staggerChildren: 0.3
-              }
-            }
-          }}
-          initial="hidden"
-          animate="show"
-        >
+        <div className="grid grid-cols-1 gap-10">
           {educationData.map((item, index) => (
             <EducationItem key={index} {...item} />
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
